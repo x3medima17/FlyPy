@@ -10,3 +10,7 @@ a = [5,9,7,6,8,4,3,2,8,1,3] * 700
 
 b = hello.bsort(a)
 #b = bsort(a)
+print b
+
+a = [1]
+hello.print_list(a)

@@ -6,5 +6,6 @@ from distutils.extension import Extension
 setup(name="Hello module",
 	ext_modules=[
 		Extension("hello",["hellomodule.cpp"],
-				libraries = ["boost_python"])
+				libraries = ["boost_python"],
+				extra_compile_args = ["-std=c++0x"])
 	])

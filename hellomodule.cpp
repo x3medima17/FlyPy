@@ -12,24 +12,40 @@ void say_hello(string name)
 	cout<<"Hello "<<name<<" !\n";
 }
 
-void print_list(boost::python::list &L)
+template<class T,class U>
+const T &add(const U& a,const U& b)
+{
+	return a+b;
+}
+
+void print_list(PYTHON_LIST &L)
 {
 	VECTOR_OF_INTS V;
 	V = list_to_vector(L);
 	for(size_t i=0; i<V.size();i++)
 		cout<<V[i]<<" ";
 	cout<<endl;
+	cout<<add(2,3)<<endl;
 }
 
-PYTHON_LIST bsort(PYTHON_LIST &L)
+
+
+VECTOR_OF_INTS _bsort(VECTOR_OF_INTS &V)
 {
-	VECTOR_OF_INTS V;
-	V = list_to_vector(L);
-	size_t n = V.size();
+	auto n = V.size();
 	for(size_t i=0;i<n;i++)
 		for(size_t j=0;j<n;j++)
 			if(V[i]<V[j])
 				swap(V[i],V[j]);
+	return V;
+}
+
+PYTHON_LIST bsort(PYTHON_LIST &L)
+{
+
+	VECTOR_OF_INTS V;
+	V = list_to_vector(L);
+	V = _bsort(V);
 	L = vector_to_list(V);
 	return L;
 
